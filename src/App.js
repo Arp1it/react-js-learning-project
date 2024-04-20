@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+// import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 
@@ -12,6 +13,7 @@ function App() {
 
     <div className='container my-4'>
     <TextForm heading='Enter Text Below' />
+    {/* <About /> */}
     </div>
     </>
   );
