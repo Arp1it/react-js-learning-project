@@ -42,6 +42,18 @@ export default function TextForm(props) {
       speak({text})
     }
 
+    const handlecopy = () =>{
+      let t = document.getElementById("myBox");
+      t.select();
+      navigator.clipboard.writeText(t.value);
+    }
+
+    const handleextraspaces = () =>{
+      let newText = text.split(/[ ]+/);
+      setText(newText.join(" "));
+      cancel();
+    }
+
 
   return (
     <>
@@ -51,8 +63,10 @@ export default function TextForm(props) {
         <button className='btn btn-primary my-3 mx-1' onClick={handleUptext}>Convert to Uppercase</button>
         <button className='btn btn-primary my-3 mx-1' onClick={handleLotext}>Convert to Lowercaase</button>
         <button className='btn btn-primary my-3 mx-1' onClick={handlecleartext}>Clear Text</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={speaktext}>speak</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={stopspeak}>stop speak</button>
+        <button className='btn btn-primary my-3 mx-1' onClick={speaktext}>Speak</button>
+        <button className='btn btn-primary my-3 mx-1' onClick={stopspeak}>Stop speak</button>
+        <button className='btn btn-primary my-3 mx-1' onClick={handlecopy}>Copy</button>
+        <button className='btn btn-primary my-3 mx-1' onClick={handleextraspaces}>Remove Extra Spaces</button>
     </div>
     <div className='container my-3'>
       <h3>Your text summary</h3>
