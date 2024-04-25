@@ -46,6 +46,7 @@ export default function TextForm(props) {
       let t = document.getElementById("myBox");
       t.select();
       navigator.clipboard.writeText(t.value);
+      props.showalert("Copied", "info")
     }
 
     const handleextraspaces = () =>{
@@ -74,6 +75,7 @@ export default function TextForm(props) {
       <p>{0.01 * text.split(" ").length} minutes read</p>
       <h4><u>Preview</u>:-</h4>
       <p><b>{text}</b></p>
+      <p>/..\"{text.length>0?text:'Enter text in textbox to preview it here!'}"/..\</p>
     </div>
     </>
   )

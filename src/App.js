@@ -3,22 +3,37 @@ import './App.css';
 // import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
+import Alert from './components/Alert';
 import React, { useState } from 'react'
 
 function App() {
   const [mode, setMode] = useState('light');
+  const [alert, setAlert] = useState(null)
+
+  const showAlert = (message, type) =>{
+    setAlert(null)
+    setAlert({
+      msg: message,
+      type: type
+    });
+    setTimeout(() => {
+      setAlert(null)
+    }, 2333);
+  }
 
   const toglemode = () =>{
     if (mode === 'light'){
       setMode('dark')
       document.body.style.backgroundColor = 'black'
       document.body.style.color = 'white'
+      showAlert("Dark mode is enabled", "info")
     }
     
     else{
       setMode('light')
       document.body.style.backgroundColor = 'white'
       document.body.style.color = 'black'
+      showAlert("Dark mode is disabled", "info")
     }
   }
 
@@ -27,9 +42,10 @@ function App() {
     {/* <Navbar title="TextUtils" aboutText="About Us" /> */}
     <Navbar title="TextUtils" modee={mode} tooglemode={toglemode} />
     {/* <Navbar /> */}
+    <Alert alert={alert}/>
 
     <div className='container my-4'>
-    <TextForm heading='Enter Text Below' />
+    <TextForm heading='Enter Text Below' showalert={showAlert} />
     {/* <About /> */}
     </div>
     </>
