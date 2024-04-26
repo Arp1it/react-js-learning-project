@@ -55,6 +55,24 @@ export default function TextForm(props) {
       cancel();
     }
 
+    const CountingWords = () =>{
+      const trimmed = text.trim();
+      const t = trimmed.replace(/\s+/g, " ")
+
+      if (t.length > 0){
+        return t.split(" ").length
+      }
+
+      else{
+        return "0"
+      }
+    }
+
+    const CountingChars = () =>{
+      let k = text.split(" ").filter(s => s).join(" ")
+      let m = k.replaceAll("\n", "").split(" ").filter(s => s).join(" ").replaceAll(" ", "")
+      return m.length
+    }
 
   return (
     <>
@@ -71,11 +89,11 @@ export default function TextForm(props) {
     </div>
     <div className='container my-3'>
       <h3>Your text summary</h3>
-      <p>{text.split(" ").length} words, {text.length} characters</p>
-      <p>{0.01 * text.split(" ").length} minutes read</p>
+      <p>{CountingWords()} words, {CountingChars()} characters</p>
+      <p>{0.01 * CountingChars()} minutes read</p>
       <h4><u>Preview</u>:-</h4>
       <p><b>{text}</b></p>
-      <p>/..\"{text.length>0?text:'Enter text in textbox to preview it here!'}"/..\</p>
+      <p>/..\"{CountingChars()>0?text:'Enter text in textbox to preview it here!'}"/..\</p>
     </div>
     </>
   )
