@@ -6,6 +6,12 @@ import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 import React, { useState } from 'react'
 
+
+// let o = ["TextUtils", "Install TextUtils now!!", "TextUtils Helps you to format your text from your desire!"]
+// setInterval(()=>{
+//   document.title = o[Math.floor(Math.random()*o.length)]
+// }, 3330)
+
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null)
