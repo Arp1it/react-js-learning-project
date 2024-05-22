@@ -1,31 +1,36 @@
 import React, {useState} from 'react'
 
-export default function About() {
+export default function About(props) {
 
-    const [mystyle, setMystyle] = useState({
-        color: "black",
-        backgroundColor: "white"
-    })
+    // const [mystyle, setMystyle] = useState({
+    //     color: "black",
+    //     backgroundColor: "white"
+    // })
 
-    const [btntext, setBtntext] = useState("Enable Dark Mode")
+    // const [btntext, setBtntext] = useState("Enable Dark Mode")
 
-    const togglestyle = () => {
-        if(mystyle.color === "black"){
-            setMystyle({
-                color: "white",
-                backgroundColor: "black",
-                border: "1px solid white"
-            })
-            setBtntext("Enable Light Mode")
-        }
+    // const togglestyle = () => {
+    //     if(mystyle.color === "black"){
+    //         setMystyle({
+    //             color: "white",
+    //             backgroundColor: "black",
+    //             border: "1px solid white"
+    //         })
+    //         setBtntext("Enable Light Mode")
+    //     }
 
-        else{
-            setMystyle({
-                color: "black",
-                backgroundColor: "white"
-            })
-            setBtntext("Enable Dark Mode")
-        }
+    //     else{
+    //         setMystyle({
+    //             color: "black",
+    //             backgroundColor: "white"
+    //         })
+    //         setBtntext("Enable Dark Mode")
+    //     }
+    // }
+
+    let mystyle = {
+        color: props.mode === "dark"?"white":"black",
+        backgroundColor: props.mode === "dark"?"black":"white",
     }
 
     return (
@@ -70,9 +75,9 @@ export default function About() {
                         </div>
                     </div>
                 </div>
-                <div className='container my-3'>
+                {/* <div className='container my-3'>
                 <button type='button' onClick={togglestyle} className='btn btn-primary'>{btntext}</button>
-                </div>
+                </div> */}
             </div>
         </>
     )

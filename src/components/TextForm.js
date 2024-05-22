@@ -47,6 +47,7 @@ export default function TextForm(props) {
       t.select();
       navigator.clipboard.writeText(t.value);
       props.showalert("Copied", "info")
+      document.getSelection().removeAllRanges()
     }
 
     const handleextraspaces = () =>{
@@ -79,18 +80,20 @@ export default function TextForm(props) {
     <div className='container'>
         <h2 className='my-3'>{props.heading}</h2>
         <textarea className="form-control" onChange={handleonchange} value={text} id="myBox" rows="12"></textarea>
-        <button className='btn btn-primary my-3 mx-1' onClick={handleUptext}>Convert to Uppercase</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={handleLotext}>Convert to Lowercaase</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={handlecleartext}>Clear Text</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={speaktext}>Speak</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={stopspeak}>Stop speak</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={handlecopy}>Copy</button>
-        <button className='btn btn-primary my-3 mx-1' onClick={handleextraspaces}>Remove Extra Spaces</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={handleUptext}>Convert to Uppercase</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={handleLotext}>Convert to Lowercaase</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={handlecleartext}>Clear Text</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={speaktext}>Speak</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={stopspeak}>Stop speak</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={handlecopy}>Copy</button>
+        <button disabled={CountingChars()===0} className='btn btn-primary my-2 mx-1' onClick={handleextraspaces}>Remove Extra Spaces</button>
     </div>
     <div className='container my-3'>
       <h3>Your text summary</h3>
       <p>{CountingWords()} words, {CountingChars()} characters</p>
+      {/* <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words, {CountingChars()} characters</p> */}
       <p>{0.01 * CountingChars()} minutes read</p>
+      {/* <p>{0.01 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes read</p> */}
       <h4><u>Preview</u>:-</h4>
       <p><b>{text}</b></p>
       <p>/..\"{CountingChars()>0?text:'Enter text in textbox to preview it here!'}"/..\</p>
