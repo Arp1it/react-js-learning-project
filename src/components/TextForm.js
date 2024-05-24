@@ -43,11 +43,12 @@ export default function TextForm(props) {
     }
 
     const handlecopy = () =>{
-      let t = document.getElementById("myBox");
-      t.select();
-      navigator.clipboard.writeText(t.value);
+      // let t = document.getElementById("myBox");
+      // t.select();
+      // navigator.clipboard.writeText(t.value);
+      navigator.clipboard.writeText(text);
       props.showalert("Copied", "info")
-      document.getSelection().removeAllRanges()
+      // document.getSelection().removeAllRanges()
     }
 
     const handleextraspaces = () =>{
@@ -91,9 +92,9 @@ export default function TextForm(props) {
     <div className='container my-3'>
       <h3>Your text summary</h3>
       <p>{CountingWords()} words, {CountingChars()} characters</p>
-      {/* <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words, {CountingChars()} characters</p> */}
+      {/* <p>{text.split("/\s+/").filter((element)=>{return element.length!==0}).length} words, {CountingChars()} characters</p> */}
       <p>{0.01 * CountingChars()} minutes read</p>
-      {/* <p>{0.01 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes read</p> */}
+      {/* <p>{0.01 * text.split("/\s+/").filter((element)=>{return element.length!==0}).length} minutes read</p> */}
       <h4><u>Preview</u>:-</h4>
       <p><b>{text}</b></p>
       <p>/..\"{CountingChars()>0?text:'Enter text in textbox to preview it here!'}"/..\</p>
